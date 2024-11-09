@@ -1,0 +1,40 @@
+
+
+.article-slide {
+    position: relative;
+    text-align: center;
+    }
+    
+    .article-info {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    }
+    
+    .article-info h3 {
+    margin: 0;
+    font-size: 1.5em;
+    }
+    
+    .article-info p {
+    margin: 10px 0;
+    }
+    
+    .article-info button {
+    background: rgba(253, 63, 85, 1) !important;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    }
+    
+    .article-info button:hover {
+    background: rgba(253, 63, 85, 1) !important;
+    }
+    

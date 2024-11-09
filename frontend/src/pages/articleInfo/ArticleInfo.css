@@ -1,0 +1,52 @@
+
+/* ArticleInfo.css */
+.mySwiper2 {
+  width: 50%;
+  height: 50%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* اضافه کردن باکس شادو */
+  border-radius: 10px; /* اضافه کردن گوشههای گرد */
+  }
+  
+  .mySwiper {
+  width: 50%;
+  height: 10%;
+  margin-top: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* اضافه کردن باکس شادو */
+  border-radius: 10px; /* اضافه کردن گوشههای گرد */
+  }
+  
+  .swiper-slide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  }
+  
+  .swiper-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px; /* اضافه کردن گوشههای گرد به تصاویر */
+  }
+  
+  .swiper-button {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  }
+
+
+
+
+
+
+  .btn {
+  margin-top: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* اضافه کردن باکس شادو به دکمه */
+  }

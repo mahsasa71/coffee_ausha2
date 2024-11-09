@@ -1,0 +1,51 @@
+
+.product-card {
+    width: 100%;
+    max-width: 350px; /* عرض کارتها را تنظیم میکند */
+    margin: 0 auto; /* کارتها را در مرکز قرار میدهد */
+    }
+    
+    .large-square-card {
+    height: 450px; /* ارتفاع کارتها را تنظیم میکند */
+    }
+    
+    .card-img-top {
+    height: 250px; /* ارتفاع تصویر کارتها را تنظیم میکند */
+    overflow: hidden;
+    }
+    
+    .stars {
+    display: flex;
+    justify-content: center;
+    color: #FFD700; /* رنگ طلایی برای ستارهها */
+    }
+    
+    .card-title {
+    font-size: 1.3rem; /* اندازه فونت عنوان را تنظیم میکند */
+    }
+    
+    .card-text {
+    font-size: 1.2rem; /* اندازه فونت متن را تنظیم میکند */
+    height: 80px; /* ارتفاع ثابت برای توضیحات */
+    overflow: hidden; /* مخفی کردن متن اضافی */
+    text-overflow: ellipsis; /* اضافه کردن سه نقطه برای متن اضافی */
+    }
+    
+    .price-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 10px;
+    }
+    
+    .price {
+    font-size: 1.3rem; /* اندازه فونت قیمت را تنظیم میکند */
+    text-decoration: line-through; /* خط کشیدن روی قیمت */
+    }
+    
+    .free-price {
+    font-size: 1.5rem; /* اندازه فونت قیمت رایگان را تنظیم میکند */
+    color: red; /* رنگ قرمز برای قیمت رایگان */
+    font-weight: bold;
+    }
+    

@@ -1,0 +1,23 @@
+.pagination-container {
+    display: flex;
+    overflow-x: auto;
+    white-space: nowrap;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    }
+    
+    .pagination-container button {
+    margin: 0 5px;
+    padding: 5px 10px;
+    background-color: #fff;
+    color: #007bff;
+    border: 1px solid #007bff;
+    border-radius: 5px;
+    cursor: pointer;
+    }
+    
+    .pagination-container button.active {
+    background-color: #007bff;
+    color: #fff;
+    }

@@ -1,0 +1,61 @@
+{
+  "hash": "4aed64ee",
+  "configHash": "5da9b446",
+  "lockfileHash": "e3b0c442",
+  "browserHash": "99f07832",
+  "optimized": {
+    "formik": {
+      "src": "../../node_modules/formik/dist/formik.esm.js",
+      "file": "formik.js",
+      "fileHash": "b6a65af6",
+      "needsInterop": false
+    },
+    "react": {
+      "src": "../../node_modules/react/index.js",
+      "file": "react.js",
+      "fileHash": "d9938754",
+      "needsInterop": true
+    },
+    "react-dom/client": {
+      "src": "../../node_modules/react-dom/client.js",
+      "file": "react-dom_client.js",
+      "fileHash": "1cb9798b",
+      "needsInterop": true
+    },
+    "react-loading-skeleton": {
+      "src": "../../node_modules/react-loading-skeleton/dist/index.js",
+      "file": "react-loading-skeleton.js",
+      "fileHash": "e3a9b068",
+      "needsInterop": false
+    },
+    "react-router-dom": {
+      "src": "../../node_modules/react-router-dom/dist/index.js",
+      "file": "react-router-dom.js",
+      "fileHash": "503f5466",
+      "needsInterop": false
+    },
+    "typewriter-effect": {
+      "src": "../../node_modules/typewriter-effect/dist/react.js",
+      "file": "typewriter-effect.js",
+      "fileHash": "f42e046c",
+      "needsInterop": true
+    },
+    "yup": {
+      "src": "../../node_modules/yup/index.esm.js",
+      "file": "yup.js",
+      "fileHash": "61ff9b79",
+      "needsInterop": false
+    }
+  },
+  "chunks": {
+    "chunk-HCGKX5ED": {
+      "file": "chunk-HCGKX5ED.js"
+    },
+    "chunk-WNPTCGAH": {
+      "file": "chunk-WNPTCGAH.js"
+    },
+    "chunk-5WRI5ZAA": {
+      "file": "chunk-5WRI5ZAA.js"
+    }
+  }
+}

@@ -1,0 +1,49 @@
+.custom-button {
+
+    background-color: #d19863; /* رنگ مشکی برای داخل دکمه */
+    color: #fff; /* رنگ سفید برای متن داخل دکمه */
+    }
+    .custom-button:hover {
+      background-color: #b37e14; /* تغییر رنگ پسزمینه به قهوهای */
+      color: #fff; /* تغییر رنگ متن به مشکی */
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* اضافه کردن سایه */
+      }
+    
+    .custom-button i {
+    margin-left: 5px;
+    }
+  
+  
+    .custom-nav-link {
+      
+      color: #fff; /* رنگ سفید برای نوشته */
+      transition: color 0.3s;
+      }
+      
+      .custom-nav-link:hover {
+      color: #fff; /* رنگ مشکی برای نوشته در حالت hover */
+      }
+
+.navbar .ml-auto {
+  margin-left: auto !important;
+  }
+  
+  .navbar .d-flex.align-items-center.ml-auto {
+  margin-left: 0 !important;
+  margin-right: auto !important;
+  }
+
+
+.search-icon {
+  font-size: 1.5rem; /* اندازه آیکن را بزرگتر میکند */
+  }
+
+
+  .custom-button {
+    background-color: #b37e14; /* رنگ قهوهای */ 
+    color: white;
+    }
+    
+
+
+  

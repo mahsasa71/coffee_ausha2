@@ -1,0 +1,37 @@
+c
+/* ============================== Login-Register Style ============================== */
+.login-register2 {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .login-register2::before {
+    content: "";
+    position: absolute;
+    top: -5rem;
+    width: 150%;
+    height: 380px;
+    background-color: rgba(210, 180, 140, 0.4);
+    z-index: -1;
+    transform: rotate(-4deg);
+  }
+  .login-register2::after {
+    content: "";
+    position: absolute;
+    width: 150%;
+    height: 380px;
+    background-color: rgba(210, 180, 140, 0.4);
+    z-index: -9999;
+    transform: rotate(-4deg);
+  }
+
+
+
+.is-invalid {
+    border-color: red;
+    }
+    
+    .is-valid {
+    border-color: green;
+    }
