@@ -137,7 +137,7 @@ export default function Home() {
           </div>
 
           <DiscountedItems />
-          <SpecialOffer />
+          {/* <SpecialOffer /> */}
 
           <ArticleInfo />
 
