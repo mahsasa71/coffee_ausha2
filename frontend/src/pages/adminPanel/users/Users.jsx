@@ -13,7 +13,6 @@ const [users, setUsers] = useState([]);
 const [isSubmitting, setIsSubmitting] = useState(false);
 const [showPassword, setShowPassword] = useState(false);
 
-
 useEffect(() => {
 getAllUsers();
 }, []);
@@ -132,8 +131,8 @@ confirmPassword: '',
 phone: '',
 },
 validationSchema,
-onSubmit: (values) => {
-console.log("Form submitted"); // اضافه کردن console.log برای بررسی اجرای تابع
+onSubmit: (values, { resetForm }) => {
+console.log("Form submitted");
 setIsSubmitting(true);
 
 const newUserInfos = {
@@ -158,7 +157,6 @@ body: JSON.stringify(newUserInfos),
 console.log(res);
 if (res.ok) {
 return res.json();
-
 } else {
 if (res.status === 403) {
 swal({
@@ -166,18 +164,24 @@ title: 'این شماره تماس مسدود شده',
 icon: 'error',
 buttons: 'ای بابا',
 });
+} else if (res.status === 409) {
+swal({
+title: 'نام کاربری یا ایمیل قبلاً ثبت شده است',
+icon: 'error',
+buttons: 'اوکی',
+});
 }
 }
 })
 .then((result) => {
-// console.log(result);
-// // authContext.login(result.user, result.accessToken);
+console.log("User registered:", result);
 swal({
-  title: "کاربر مورد نظر با موفقیت اضافه شد",
-  icon: "success",
-  buttons: "اوکی",
+title: "کاربر مورد نظر با موفقیت اضافه شد",
+icon: "success",
+buttons: "اوکی",
 });
-getAllUsers()
+getAllUsers();
+resetForm(); // خالی کردن فیلدهای فرم
 })
 .catch((error) => {
 console.error("Error registering user:", error);
@@ -223,61 +227,138 @@ console.error("Error changing role:", error);
 }
 
 return (
-  <>
-  <form onSubmit={formik.handleSubmit} className="login-form">
-  {/* Your form elements */}
-  </form>
-  
-  <DataTable title="کاربران">
-  <table className="table">
-  <thead>
-  <tr>
-  <th>شناسه</th>
-  <th>نام و نام خانوادگی</th>
-  <th>شماره تلفن</th>
-  <th>ایمیل</th>
-  <th>نقش</th>
-  <th>ویرایش</th>
-  <th>تغییر سطح</th>
-  <th>حذف</th>
-  <th>بن</th>
-  </tr>
-  </thead>
-  <tbody>
-  {users.map((user, index) => (
-  <tr key={user._id}>
-  <td style={{ border: "1px solid black", padding: "8px" }}>{index + 1}</td>
-  <td style={{ border: "1px solid black", padding: "8px" }}>{user.name}</td>
-  <td style={{ border: "1px solid black", padding: "8px" }}>{user.phone}</td>
-  <td style={{ border: "1px solid black", padding: "8px" }}>{user.email}</td>
-  <td style={{ border: "1px solid black", padding: "8px" }}>{user.role === 'ADMIN' ? "مدیر" : "کاربر عادی"}</td>
-  <td style={{ border: "1px solid black", padding: "8px" }}>
-  <button type="button" className="btn btn-primary edit-btn"
-  style={{backgroundColor:'#D2B48C'}}>
-  ویرایش
-  </button>
-  </td>
-  <td style={{ border: "1px solid black", padding: "8px" }}>
-  <button type="button" className="btn btn-primary edit-btn" onClick={() => changeRole(user._id)}style={{backgroundColor:'#D2B48C'}} >
-  تغییر نقش
-  </button>
-  </td>
-  <td style={{ border: "1px solid black", padding: "8px" }}>
-  <button type="button" className="btn btn-danger delete-btn" onClick={() => removeUser(user._id)}>
-  حذف
-  </button>
-  </td>
-  <td style={{ border: "1px solid black", padding: "8px" }}>
-  <button type="button" className="btn btn-danger delete-btn" onClick={() => banUser(user._id)}>
-  بن
-  </button>
-  </td>
-  </tr>
-  ))}
-  </tbody>
-  </table>
-  </DataTable>
-  </>
-  );
-  
+<>
+
+<form onSubmit={formik.handleSubmit} className="login-form" style={{ display: 'flex', flexDirection: 'column', gap: '2px', padding: '20px', border: '1px solid #ccc', borderRadius: '10px', backgroundColor: '#f9f9f9' }}>
+<div style={{ display: 'flex', flexDirection: 'column', gap: '2px' }}>
+<label htmlFor="name">نام و نام خانوادگی</label>
+<input
+id="name"
+name="name"
+type="text"
+onChange={formik.handleChange}
+value={formik.values.name}
+style={{ width: '100%', padding: '10px', border: '1px solid #ccc', borderRadius: '5px', fontSize: '16px' }}
+/>
+{formik.errors.name ? <div>{formik.errors.name}</div> : null}
+</div>
+<div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+<label htmlFor="username">نام کاربری</label>
+<input
+id="username"
+name="username"
+type="text"
+onChange={formik.handleChange}
+value={formik.values.username}
+style={{ width: '100%', padding: '10px', border: '1px solid #ccc', borderRadius: '5px', fontSize: '16px' }}
+/>
+{formik.errors.username ? <div>{formik.errors.username}</div> : null}
+</div>
+<div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+<label htmlFor="email">ایمیل</label>
+<input
+id="email"
+name="email"
+type="email"
+onChange={formik.handleChange}
+value={formik.values.email}
+style={{ width: '100%', padding: '10px', border: '1px solid #ccc', borderRadius: '5px', fontSize: '16px' }}
+/>
+{formik.errors.email ? <div>{formik.errors.email}</div> : null}
+</div>
+<div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+<label htmlFor="password">کلمه عبور</label>
+<input
+id="password"
+name="password"
+type={showPassword ? "text" : "password"}
+onChange={formik.handleChange}
+value={formik.values.password}
+style={{ width: '100%', padding: '10px', border: '1px solid #ccc', borderRadius: '5px', fontSize: '16px' }}
+/>
+{formik.errors.password ? <div>{formik.errors.password}</div> : null}
+{/* <button type="button" onClick={() => setShowPassword(!showPassword)} style={{ marginTop: '10px' }}>
+{showPassword ? "مخفی کردن" : "نمایش"}
+</button> */}
+</div>
+<div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+<label htmlFor="confirmPassword">تکرار کلمه عبور</label>
+<input
+id="confirmPassword"
+name="confirmPassword"
+type={showPassword ? "text" : "password"}
+onChange={formik.handleChange}
+value={formik.values.confirmPassword}
+style={{ width: '100%', padding: '10px', border: '1px solid #ccc', borderRadius: '5px', fontSize: '16px' }}
+/>
+{formik.errors.confirmPassword ? <div>{formik.errors.confirmPassword}</div> : null}
+</div>
+<div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+<label htmlFor="phone">شماره تلفن</label>
+<input
+id="phone"
+name="phone"
+type="text"
+onChange={formik.handleChange}
+value={formik.values.phone}
+style={{ width: '100%', padding: '10px', border: '1px solid #ccc', borderRadius: '5px', fontSize: '16px' }}
+/>
+{formik.errors.phone ? <div>{formik.errors.phone}</div> : null}
+</div>
+<div style={{ display: 'flex', justifyContent: 'center', marginTop: '20px'}}>
+<button type="submit" disabled={isSubmitting} style={{width:'100%'  ,padding: '15px 30px', fontSize: '18px', backgroundColor: 'rgba(253, 63, 85, 1)', color: '#fff', border: 'none', borderRadius: '5px' }}>
+ثبت نام
+</button>
+</div>
+</form>
+<DataTable title="کاربران">
+<table className="table">
+<thead>
+<tr>
+<th>شناسه</th>
+<th>نام و نام خانوادگی</th>
+<th>شماره تلفن</th>
+<th>ایمیل</th>
+<th>نقش</th>
+<th>ویرایش</th>
+<th>تغییر سطح</th>
+<th>حذف</th>
+<th>بن</th>
+</tr>
+</thead>
+<tbody>
+{users.map((user, index) => (
+<tr key={user._id}>
+<td style={{ border: "1px solid black", padding: "8px" }}>{index + 1}</td>
+<td style={{ border: "1px solid black", padding: "8px" }}>{user.name}</td>
+<td style={{ border: "1px solid black", padding: "8px" }}>{user.phone}</td>
+<td style={{ border: "1px solid black", padding: "8px" }}>{user.email}</td>
+<td style={{ border: "1px solid black", padding: "8px" }}>{user.role === 'ADMIN' ? "مدیر" : "کاربر عادی"}</td>
+<td style={{ border: "1px solid black", padding: "8px" }}>
+<button type="button" className="btn btn-primary edit-btn" style={{backgroundColor:'#D2B48C'}}>
+ویرایش
+</button>
+</td>
+<td style={{ border: "1px solid black", padding: "8px" }}>
+<button type="button" className="btn btn-primary edit-btn" onClick={() => changeRole(user._id)} style={{backgroundColor:'#D2B48C'}}>
+تغییر نقش
+</button>
+</td>
+<td style={{ border: "1px solid black", padding: "8px" }}>
+<button type="button" className="btn btn-danger delete-btn" onClick={() => removeUser(user._id)}>
+حذف
+</button>
+</td>
+<td style={{ border: "1px solid black", padding: "8px" }}>
+<button type="button" className="btn btn-danger delete-btn" onClick={() => banUser(user._id)}>
+بن
+</button>
+</td>
+</tr>
+))}
+</tbody>
+</table>
+</DataTable>
+</>
+);
 }
